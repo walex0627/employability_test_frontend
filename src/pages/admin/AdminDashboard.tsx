@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../api/axios';
-import Navbar from '../../components/NavBar';
+import Navbar from '../../components/Navbar';
 import VacancyModal from '../../components/VacancyModal'; 
 import { type Vacancy, type ApiResponse } from '../../types/index';
 import { Plus, MapPin, Trash2, LayoutGrid, Edit, Users } from 'lucide-react';
