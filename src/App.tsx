@@ -4,12 +4,15 @@ import Register from './pages/auth/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import CoderDashboard from './pages/coder/CoderDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import { useAuth } from './context/AuthContext';
 
 /**
  * Main Application Routing
  * Each role is assigned a unique base path to prevent Route collisions.
  */
 function App() {
+  const { user } = useAuth();
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -18,8 +21,8 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* PROTECTED ROUTES */}
-        <Route element={<ProtectedRoute allowedRoles={['coder']} />}>
-          <Route path="/dashboard" element={<CoderDashboard />} />
+        <Route element={<ProtectedRoute allowedRoles={['coder', 'gestor']} />}>
+          <Route path="/dashboard" element={user?.role === 'gestor' ? <AdminDashboard /> : <CoderDashboard />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={['admin', 'gestor']} />}>

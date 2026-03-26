@@ -4,12 +4,14 @@ import Navbar from '../../components/Navbar';
 import VacancyModal from '../../components/VacancyModal'; 
 import { type Vacancy, type ApiResponse } from '../../types/index';
 import { Plus, MapPin, Trash2, LayoutGrid, Edit, Users } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 /**
  * AdminDashboard Component
  * Manages job listings and allows viewing specific applicants for each offer.
  */
 const AdminDashboard: React.FC = () => {
+  const { user } = useAuth();
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -170,12 +172,14 @@ const AdminDashboard: React.FC = () => {
                             >
                               <Edit size={16} />
                             </button>
-                            <button 
-                              onClick={() => handleDelete(v.id)} 
-                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-white rounded-lg shadow-sm border border-transparent hover:border-red-100 transition-all"
-                            >
-                              <Trash2 size={16} />
-                            </button>
+                            {user?.role !== 'gestor' && (
+                              <button 
+                                onClick={() => handleDelete(v.id)} 
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-white rounded-lg shadow-sm border border-transparent hover:border-red-100 transition-all"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            )}
                           </div>
                         </td>
                       </tr>
