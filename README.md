@@ -93,6 +93,18 @@ src/
 * **Infinite Redirects:** Solved by preventing `ProtectedRoute` and `Login` from triggering simultaneous navigation updates.
 * **Database Constraints:** If a vacancy cannot be deleted, ensure the Backend has `onDelete: 'CASCADE'` configured in the Applications entity.
 
+## 👥 Test Users
+
+The application comes with pre-configured users to easily test the different roles and permissions.
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@riwi.io` | `Riwi123!` |
+| **Hiring Manager (Gestor)** | `manager@riwi.io` | `Riwi123!` |
+| **Coder** | `coder@riwi.io` | `Riwi123!` |
+
+> **Note**: You will need to use these credentials to get a JWT token via the login endpoint to access protected routes.
+
 ## 🤝 Contribution
 
 1. Fork the project.
